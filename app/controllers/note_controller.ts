@@ -68,7 +68,7 @@ export default class NoteController {
       await note.save()
 
       session.flash('success', 'Note updated successfully')
-      return response.redirect('/notes')
+      return response.redirect().toRoute('notes.index')
     } catch (error) {
       session.flash('error', 'Something went wrong')
       return response.status(404).send('Note not found')
@@ -83,7 +83,7 @@ export default class NoteController {
       const note = await Note.findOrFail(params.id)
       await note.delete()
       session.flash('success', 'Note deleted successfully')
-      return response.redirect('/notes')
+      return response.redirect().toRoute('notes.index')
     } catch (error) {
       session.flash('error', 'Something went wrong')
       return response.status(404).send('Note not found')
