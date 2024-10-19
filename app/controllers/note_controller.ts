@@ -63,6 +63,7 @@ export default class NoteController {
     try {
       const data = request.only(['title', 'content', 'isComplete'])
       const note = await Note.findOrFail(params.id)
+
       note.merge(data)
       await note.save()
 
