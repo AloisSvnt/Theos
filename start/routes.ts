@@ -8,5 +8,17 @@
 */
 
 import router from '@adonisjs/core/services/router'
-router.on('/').renderInertia('home')
+const NoteController = () => import('#controllers/note_controller')
+router.on('/').renderInertia('home').as('home')
 
+router
+  .group(() => {
+    router.get('', [NoteController, 'index']).as('notes.index')
+    router.get('/create', [NoteController, 'create']).as('notes.create')
+    router.post('', [NoteController, 'store']).as('notes.store')
+    router.get('/:id', [NoteController, 'show']).as('notes.show')
+    router.get('/:id/edit', [NoteController, 'edit']).as('notes.edit')
+    router.put('/:id', [NoteController, 'update']).as('notes.update')
+    router.delete('/:id', [NoteController, 'destroy']).as('notes.destroy')
+  })
+  .prefix('/notes')
