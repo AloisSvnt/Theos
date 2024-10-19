@@ -37,7 +37,7 @@ export default class NoteController {
   /**
    * Show individual record
    */
-  public async show({ params, response, session, inertia }: HttpContext) {
+  public async show({ params, response, inertia }: HttpContext) {
     try {
       return inertia.render('Note/Show', { id: params.id })
     } catch (error) {
