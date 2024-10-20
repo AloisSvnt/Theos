@@ -1,4 +1,5 @@
 <script setup>
+import { Link } from '@inertiajs/vue3'
 </script>
 
 <template>
@@ -22,14 +23,14 @@
       <ul
         tabindex="0"
         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li><a>Homepage</a></li>
-        <li><a>Portfolio</a></li>
-        <li><a>About</a></li>
+        <li><Link href="/">Homepage</Link></li>
+        <li><Link href="">Notes</Link></li>
+        <li><Link href="">About</Link></li>
       </ul>
     </div>
   </div>
   <div class="navbar-center">
-    <a class="btn btn-ghost text-xl">daisyUI</a>
+    <Link href="/" class="btn btn-ghost text-xl">daisyUI</Link>
   </div>
   <div class="navbar-end">
     <!-- <button class="btn btn-ghost btn-circle">

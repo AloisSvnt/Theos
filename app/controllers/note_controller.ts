@@ -50,7 +50,8 @@ export default class NoteController {
    */
   public async edit({ params, response, inertia }: HttpContext) {
     try {
-      return inertia.render('Note/Edit', { id: params.id })
+      const note = await Note.findOrFail(params.id)
+      return inertia.render('Note/Edit', { note })
     } catch (error) {
       return response.status(404).send('Note not found')
     }
