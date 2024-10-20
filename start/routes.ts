@@ -9,6 +9,7 @@
 
 import router from '@adonisjs/core/services/router'
 const NoteController = () => import('#controllers/note_controller')
+
 router.on('/').renderInertia('home').as('home')
 
 router
