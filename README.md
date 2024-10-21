@@ -1,4 +1,4 @@
-# Instructions pour le Projet AdonisJS
+# Instructions pour le Projet AdonisJS - Theos
 
 ## Installation
 
