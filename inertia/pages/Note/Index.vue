@@ -25,9 +25,7 @@ const props = defineProps({
         </div>
 
         <div class="grid grid-cols-3 gap-12">
-          <div v-for="note in notes">
-            <NoteCard :note="note" />
-          </div>
+          <NoteCard v-for="note in notes" :note="note" />
         </div>
 
   </DefaultLayout>
