@@ -42,6 +42,17 @@ const props = defineProps({
     </li>
     <li>
       <Link 
+        :href="`/notes/${note.id}/duplicate`" 
+        method="post"
+        as="button"
+        type="button"
+        class="tooltip" 
+        data-tip="Duplicate">
+        <i class="fa-regular fa-copy text-lg"></i>
+      </Link>
+    </li>
+    <li>
+      <Link 
         :href="`/notes/${note.id}/destroy`" 
         method="delete"
         as="button"

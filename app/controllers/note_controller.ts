@@ -90,4 +90,24 @@ export default class NoteController {
       return response.status(404).send('Note not found')
     }
   }
+
+  /**
+   * Duplicate record
+   */
+  public async duplicate({ params, response, session }: HttpContext) {
+    try {
+      const note = await Note.findOrFail(params.id)
+      const newNote = new Note()
+      newNote.title = note.title + ' (copy)'
+      newNote.content = note.content
+      newNote.isComplete = note.isComplete
+      await newNote.save()
+      session.flash('success', 'Note duplicated successfully')
+      return response.redirect().toRoute('notes.index')
+    }
+    catch (error) {
+      session.flash('error', 'Something went wrong')
+      return response.status(404).send('Note not found')
+    }
+  }
 }

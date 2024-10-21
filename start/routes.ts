@@ -21,5 +21,6 @@ router
     router.get('/:id/edit', [NoteController, 'edit']).as('notes.edit')
     router.put('/:id', [NoteController, 'update']).as('notes.update')
     router.delete('/:id/destroy', [NoteController, 'destroy']).as('notes.destroy')
+    router.post('/:id/duplicate', [NoteController, 'duplicate']).as('notes.duplicate')
   })
   .prefix('/notes')
