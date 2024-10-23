@@ -1,6 +1,15 @@
 <script setup>
+import { usePage } from '@inertiajs/vue3'
+import { computed } from 'vue'
+
 import MainHeader from '@/components/MainHeader.vue'
 import MainFooter from '@/components/MainFooter.vue'
+import FlashMessages from '@/components/FlashMessages.vue'
+
+const page = usePage()
+const flashSuccess = computed(() => page.props.success)
+const flashError = computed(() => page.props.errors)
+
 </script>
 
 <template>
@@ -14,7 +23,8 @@ import MainFooter from '@/components/MainFooter.vue'
       </div>
     </main>
 
-    <MainFooter />
-  </div>
-  
+      <FlashMessages :key="flashSuccess || flashError" :message="flashSuccess ? flashSuccess : flashError" :type="flashSuccess ? 'success': 'error'" />
+      <MainFooter />
+    </div>
+    
 </template>

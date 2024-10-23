@@ -1,7 +1,6 @@
 <script setup>
 import { Head, useForm } from '@inertiajs/vue3';
 import { defineProps, computed } from 'vue';
-import DefaultLayout from '@/layouts/DefaultLayout.vue';
 
 const props = defineProps({
   note: {
@@ -30,7 +29,6 @@ const isCompleteComputed = computed({
 });
 
 const handleSubmit = () => {
-  console.log(form);
   form.put(`/notes/${props.note.id}`);
 };
 </script>
@@ -38,41 +36,38 @@ const handleSubmit = () => {
 <template>
   <Head title="Create Note" />
 
-  <DefaultLayout>
+  <h1 class="text-5xl font-bold py-6">Edit Note</h1>
 
-    <h1 class="text-5xl font-bold py-6">Edit Note</h1>
+  <form
+    @submit.prevent="handleSubmit"
+    class="flex flex-col w-1/3 gap-4 items-end">
 
-    <form
-      @submit.prevent="handleSubmit"
-      class="flex flex-col w-1/3 gap-4 items-end">
+    <input
+      type="text"
+      v-model="form.title"
+      class="input input-bordered w-full"
+      placeholder="Title"
+    >
+    <div v-if="form.errors.title">{{ form.errors.title }}</div>
 
-      <input
-        type="text"
-        v-model="form.title"
-        class="input input-bordered w-full"
-        placeholder="Title"
-      >
-      <div v-if="form.errors.title">{{ form.errors.title }}</div>
+    <textarea
+      v-model="form.content"
+      placeholder="Content"
+      class="textarea textarea-bordered textarea-md w-full"></textarea>
+    <div v-if="form.errors.content">{{ form.errors.content }}</div>
 
-      <textarea
-        v-model="form.content"
-        placeholder="Content"
-        class="textarea textarea-bordered textarea-md w-full"></textarea>
-      <div v-if="form.errors.content">{{ form.errors.content }}</div>
+    <div class="form-control w-1/3">
+      <label class="label cursor-pointer">
+        <span class="label-text">Is complete ?</span>
+        <input 
+          v-model="isCompleteComputed"
+          type="checkbox" 
+          class="checkbox checkbox-teal-400/80" 
+        />
+      </label>
+    </div>
 
-      <div class="form-control w-1/3">
-        <label class="label cursor-pointer">
-          <span class="label-text">Is complete ?</span>
-          <input 
-            v-model="isCompleteComputed"
-            type="checkbox" 
-            class="checkbox checkbox-teal-400/80" 
-          />
-        </label>
-      </div>
+    <button type="submit" class="btn btn-primary w-full">Update</button>
+  </form>
 
-      <button type="submit" class="btn btn-primary w-full">Update</button>
-    </form>
-
-  </DefaultLayout>
 </template>
