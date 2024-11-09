@@ -14,7 +14,13 @@ npm install
 ```bash
 cp .env.example .env
 ```
-##### 2. Create the folder '/tmp'
+
+##### 3. Generate the APP_KEY'
+```bash
+node ace generate:key
+```
+
+##### 3. Create the folder '/tmp'
 ```bash
 mkdir tmp
 ```
