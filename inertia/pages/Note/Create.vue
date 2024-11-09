@@ -8,7 +8,6 @@ const form = useForm({
 });
 
 const handleSubmit = () => {
-  console.log(form);
   form.post('/notes');
 };
 </script>
